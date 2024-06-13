@@ -4,7 +4,7 @@
 
   <div class="container my-3">
     <h2>Update a todo</h2>
-    <form action="/" method="post">
+    <form action="/update/{{todos.sno}}" method="post">
       <div class="mb-3">
         <label for="title" class="form-label">Name a list</label>
         <input type="text" class="form-control" name="title" id="title" value="{{todos.title}}" aria-describedby="emailHelp">

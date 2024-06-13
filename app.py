@@ -33,8 +33,18 @@ def hello_world():
     todo=TodoList.query.all()
     return render_template("index.html",todos=todo)
 
-@app.route("/update/<int:sno>")
+@app.route("/update/<int:sno>", methods=['GET','POST'])
 def update(sno):
+    if request.method=='POST':
+        title = request.form['title']
+        desc = request.form['desc']
+        todo =TodoList.query.filter_by(sno=sno).first()
+        todo.title = title
+        todo.desc = desc
+        db.session.add(todo)
+        db.session.commit()
+        return redirect("/")
+
     alltodo =TodoList.query.filter_by(sno=sno).first()
     return render_template("update.html",todos=alltodo)
     
